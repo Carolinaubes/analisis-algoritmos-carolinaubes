@@ -27,4 +27,7 @@ git branch -M master
 git push -u origin master
 ```
 
+### Notas adicionales
 
+* Evidencia colaborador nuevo: santiagoSuarez219
+![image alt](https://github.com/Carolinaubes/analisis-algoritmos-carolinaubes/blob/d24ff6682a5f2b3e212496303a0347285c16f16f/github-imagenes/collaborator-evidence.png)
