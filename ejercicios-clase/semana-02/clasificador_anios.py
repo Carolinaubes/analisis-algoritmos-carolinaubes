@@ -1,3 +1,5 @@
+import statistics
+
 """Clasificador de años bisiestos.
  
 Complete las funciones siguiendo la especificación de cada docstring.
@@ -25,7 +27,22 @@ def es_bisiesto(anio: int) -> bool:
                 return False
         else:
             return True
+    else:
+        return False
  
+
+def validar_negativo(numero: int) -> bool:
+    """Valida si un número es negativo.
+
+    Args:
+        numero: número a evaluar (número entero).
+
+    Returns:
+        True si el número es negativo, False en caso contrario.
+    """ 
+    if (numero < 0):
+        return True
+    return False
  
 def leer_anios() -> list[int]:
     """Solicita al usuario una lista de años separados por comas.
@@ -41,9 +58,13 @@ def leer_anios() -> list[int]:
     while True:
         try:
             lista_anios = [int(anio.strip()) for anio in (input("Ingrese años separados por comas: ")).split(",")]
+            if len([anio for anio in lista_anios if validar_negativo(anio) == True]) > 0:
+                raise Exception("No se permiten años negativos.")
             return lista_anios
         except ValueError:
             print("Entrada inválida. Por favor ingrese números enteros separados por comas")
+        except Exception as e:
+            print(e)
  
 def main() -> None:
     """Punto de entrada del script."""
@@ -54,8 +75,9 @@ def main() -> None:
     lista_anios = leer_anios()
     lista_bisiestos = [anio for anio in lista_anios if es_bisiesto(anio) == True]
     cantidad_bisiestos = len(lista_bisiestos)
+    promedio_bisiestos = statistics.mean(lista_bisiestos) if cantidad_bisiestos > 0 else 0
 
-    print(f"RESUMEN------------\nAños ingresados: {lista_anios}\nAños bisiestos: {lista_bisiestos}\nCantidad de años bisiestos: {cantidad_bisiestos} de {len(lista_anios)}")
- 
+    print(f"RESUMEN------------\nAños ingresados: {lista_anios}\nAños bisiestos: {lista_bisiestos}\nCantidad de años bisiestos: {cantidad_bisiestos} de {len(lista_anios)}\nPromedio de años bisiestos: {promedio_bisiestos}")
+
 if __name__ == "__main__":
     main()
