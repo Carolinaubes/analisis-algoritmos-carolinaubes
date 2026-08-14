@@ -19,7 +19,7 @@ python -m venv venv --> "Creación del entorno virtual"
 venv\Scripts\activate --> "Activación del entorno virtual usando el archivo 'activate'"
 ```
 
-## Reprodución del entorno
+## Reproducción del entorno
 Para la correcta reproducción del entorno basta con seguir los siguientes pasos:
 1. Crear y activar un entorno virtual para mantener aisladas las dependencias
 2. Hacer uso del comando ```pip install -r requirements.txt``` para instalar las dependencias contenidas en el archivo 'requirements.txt'
