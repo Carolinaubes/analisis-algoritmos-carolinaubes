@@ -10,7 +10,7 @@
 * parte4_complejidad.py: 
 * graficas/: 
 
-## Intrucciones para reproducir el experimento (PENDIENTE)
+## Intrucciones para reproducir el experimento
 El proyecto fue desarrollado utilizando exclusivamente la biblioteca estándar de Python (`time`, `random`, `math`), por lo que no requiere la instalación de librerías ni dependencias externas.
 Para la correcta reproducción del entorno basta con seguir los siguientes pasos:
 1. Abra una terminal dentro de la carpeta nombrada 'lab1-fundamentos-complejidad-recurrencias' y ejecute los siguientes comandos:
