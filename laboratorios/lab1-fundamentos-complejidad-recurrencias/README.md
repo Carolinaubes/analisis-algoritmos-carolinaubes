@@ -134,7 +134,7 @@ A partir del código anterior, se analiza el costo computacional de cada una de 
 
 El tiempo total T(n) sale como un resultado de la sumatoria ponderada de los costos (c_k) de todas las líneas, quedando expresado como:
 
-![image alt]()
+![image alt](https://github.com/Carolinaubes/analisis-algoritmos-carolinaubes/blob/dd87b7a65bb3a84bf322385b9ae77050effc58bd/laboratorios/lab1-fundamentos-complejidad-recurrencias/github-imagenes/tiempo_total.png)
 
 El comportamiento del algoritmo es dependiente del valor que tome t_i, por lo tanto, analizando lo obtenido:
 - En el mejor caso, el ciclo que se encuentra en el interior solo realiza una verificación por cada iteración (t_i = 1) y la sumatoria se comporta de forma lineal, permitiendo determinar que el término dominante es n, lo que resulta en una complejidad Θ(n).
