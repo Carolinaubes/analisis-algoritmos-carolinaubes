@@ -1,7 +1,7 @@
 import algoritmos, datos, time
 import matplotlib.pyplot as plt
 
-# Uso de Insertion Sort para medir comparaciones y tiempo de ejecución en diferentes escenarios
+# Uso de Insertion Sort y Merge Sort para medir comparaciones y tiempo de ejecución en el escenario A
 
 tamanos = [100, 200, 400, 800, 1600, 3200, 6400]
 tiempos_is = [] # Resultados de tiempos producidos por Insertion Sort
