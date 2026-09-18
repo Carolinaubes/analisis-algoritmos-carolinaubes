@@ -4,21 +4,26 @@
 
 ## Propósito carpetas y archivos  
 
-* algoritmos.py: 
-* datos.py: 
-* parte3_casos.py: 
-* parte4_complejidad.py: 
-* graficas/: 
+* algoritmos.py: Lógica de los algoritmos Insertion Sort y Merge Sort
+* datos.py: Lógica para la generación de los datos usados para los 3 escenarios.
+* parte3_casos.py: Medición de comparaciones y tiempos de ejecución con Insertion Sort en diferentes escenarios.
+* parte4_complejidad.py: Medición de tiempos de ejecución con Insertion Sort y Merge Sort en el escenario A.
+* graficas/: Carpeta que almacena las gráficas generadas en el laboratorio.
 
-## Intrucciones para reproducir el experimento (PENDIENTE)
-El proyecto fue desarrollado utilizando exclusivamente la biblioteca estándar de Python (`time`, `random`, `math`), por lo que no requiere la instalación de librerías ni dependencias externas.
+## Intrucciones para reproducir el experimento 
 Para la correcta reproducción del entorno basta con seguir los siguientes pasos:
 1. Abra una terminal dentro de la carpeta nombrada 'lab1-fundamentos-complejidad-recurrencias' y ejecute los siguientes comandos:
+```bash
     -  python -m venv venv
     -  venv\Scripts\activate
+```
 
-2. Para ejecutar el archivo 'parte3_casos.py' ejecute:
+2. Hacer uso del comando pip install -r requirements.txt para instalar las dependencias contenidas en el archivo 'requirements.txt'
+3. Para ejecutar los archivos 'parte3_casos.py' y 'parte4_complejidad.py' ejecute:
+```bash
     - python parte3_casos.py
+    - python parte4_complejidad.py
+```
 
 ## Parte 1 - Respuesta argumentativa
 
@@ -75,10 +80,10 @@ Los resultados experimentales presentados en las gráficas confirman con precisi
 ![image alt](https://github.com/Carolinaubes/analisis-algoritmos-carolinaubes/blob/f038b8a4f02f13e0494f2904325f08c2836e5bb9/laboratorios/lab1-fundamentos-complejidad-recurrencias/graficas/parte3_tiempo.png)
 
 ## Parte 4
-
+[CÓDIGO DE LA PARTE 4](https://github.com/Carolinaubes/analisis-algoritmos-carolinaubes/blob/077446eaac61609c925862bb00e1b122e0ced7f7/laboratorios/lab1-fundamentos-complejidad-recurrencias/parte4_complejidad.py)
 ## 4.1 Cálculo teórico
 
-El algoritmo Merge Sort divide el arreglo en dos subproblemas de tamaño n/2, resuelve recursivamente cada uno de ellos y posteriormente fusiona ambas partes ya ordenadas recorriendo todos los elementos de una sola vez. Es por esto que su recurrencia es: T(n)=2T(n/2)+Θ(n)
+El algoritmo Merge Sort, agregado al archivo [algoritmos.py](https://github.com/Carolinaubes/analisis-algoritmos-carolinaubes/blob/077446eaac61609c925862bb00e1b122e0ced7f7/laboratorios/lab1-fundamentos-complejidad-recurrencias/algoritmos.py), divide el arreglo en dos subproblemas de tamaño n/2, resuelve recursivamente cada uno de ellos y posteriormente fusiona ambas partes ya ordenadas recorriendo todos los elementos de una sola vez. Es por esto que su recurrencia es: T(n)=2T(n/2)+Θ(n)
 
 Para obtener la cota final se hace uso del método maestro sobre la recurrencia planteada anteriormente donde se identifican los siguientes elementos:
 
@@ -147,5 +152,16 @@ La complejidad de cada algoritmo para el mejor caso, peor y promedio se ve refle
 | **Insertion Sort** | Θ(n) | Θ(n²) | Θ(n²) |
 | **Merge Sort** | Θ(n log n) | Θ(n log n) | Θ(n log n) |
 
-### Notas adicionales
+## 4.2 Validación experimental
+
+### Gráfica: Tiempo vs Tamaño de Entrada
+
+![image alt](https://github.com/Carolinaubes/analisis-algoritmos-carolinaubes/blob/077446eaac61609c925862bb00e1b122e0ced7f7/laboratorios/lab1-fundamentos-complejidad-recurrencias/graficas/parte4_tiempo.png)
+
+En el escenario A, correspondiente a una distribución aleatoria de los registros, se observa que Merge Sort presenta un mejor desempeño en cuanto a tiempo de ejecución en comparación con Insertion Sort para todos los tamaños de entrada evaluados (200, 400, 800, 1600, 3200 y 6400). La curva de Insertion Sort aumenta de una manera considerable a medida que va creciendo el tamaño de la entrada, llegando a alcanzar más de 2 segundos cuando el tamaño es de 6400 registros; mientras que la curva de Merge Sort permanece prácticamente constante, y sus tiempos de ejecución siguen siendo bajos, incluso con el mayor tamaño de entrada. 
+
+Lo mencionado anteriormente es una razón suficiente para decir que Merge Sort es la alternativa más adecuada para Tamiza en este escenario (A), en especial cuando el número de registros aumenta. Además, el comportamiento obtenido se relaciona con que Insertion Sort posee complejidad promedio de Θ(n²) , mientras que Merge Sort tiene una complejidad de Θ (n log n) , siendo consistente con las complejidades calculadas en la sección 4.1. 
+
+En el caso de entradas más pequeñas, la diferencia entre los dos algoritmos es mucho menor y puede que ni siquiera refleje claramente la ventaja teórica del Merge Sort. Esto puede deberse a que, con entradas pequeñas, el costo adicional de las operaciones del Merge Sort tiene un mayor impacto en el tiempo total de ejecución, lo que hace que las diferencias en complejidad sean más difíciles de apreciar.
+
 
