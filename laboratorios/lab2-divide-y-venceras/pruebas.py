@@ -40,7 +40,6 @@ assert resultado_fuerza_bruta[2] == resultado_divide_venceras[2]
 
 # Caso donde la mejor racha cruza el punto medio.
 serie = [-10, 4, 5, 6, 7, -10]
-
 resultado_fuerza = subarreglo_fuerza_bruta(serie)
 resultado_divide = subarreglo_maximo(serie, 0, len(serie) - 1)
 
