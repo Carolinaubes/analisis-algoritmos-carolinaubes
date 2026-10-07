@@ -39,5 +39,5 @@ plt.xlabel("Tamaño de entrada (n)")
 plt.ylabel("Tiempo de ejecución (segundos)")
 plt.legend()
 
-plt.savefig("parte4_tiempo.png")
+plt.savefig("./laboratorios/lab1-fundamentos-complejidad-recurrencias/graficas/parte4_tiempo.png")
 plt.show()
