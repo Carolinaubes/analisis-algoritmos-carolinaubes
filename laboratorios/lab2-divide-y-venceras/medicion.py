@@ -1,9 +1,14 @@
+import random
+import time
+
 import matplotlib.pyplot as plt
-import subarreglo, time, random
+
+import subarreglo
+
 
 tamanos = [10, 50, 100, 500, 1000, 4000, 8000]
-tiempos_fb = [] # Resultados de tiempos producidos por Fuerza Bruta
-tiempos_sm = [] # Resultados de tiempos producidos por Subarreglo Maximo
+tiempos_fb = []  # Tiempos de Fuerza Bruta
+tiempos_sm = []  # Tiempos de Subarreglo Maximo
 semilla = 42
 
 random.seed(semilla)
@@ -21,14 +26,15 @@ for n in tamanos:
     fin_sm = time.perf_counter()
     tiempos_sm.append(fin_sm - inicio_sm)
 
-    assert resultado_fb[2] == resultado_sm[2] # Verificacion de que ambos algoritmos producen el mismo resultado
+    # Validar que ambos algoritmos producen el mismo resultado
+    assert resultado_fb[2] == resultado_sm[2]
 
     print(f"Tamaño: {n}")
     print(f"Fuerza bruta: {tiempos_fb[-1]:.6f} s")
     print(f"Divide y vencerás: {tiempos_sm[-1]:.6f} s")
     print(f"Suma: {resultado_fb[2]}\n")
 
-# Creación de gráfica: Tiempo vs Tamano entrada
+# Creacion de grafica: Tiempo vs Tamano entrada
 plt.plot(tamanos, tiempos_fb, marker="o", label="Fuerza Bruta")
 plt.plot(tamanos, tiempos_sm, marker="o", label="Divide y Vencerás")
 
