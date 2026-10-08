@@ -1,5 +1,6 @@
 import random
 import time
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 
@@ -42,6 +43,13 @@ plt.title("Tiempo de ejecución vs tamaño de entrada")
 plt.xlabel("Tamaño de entrada (n)")
 plt.ylabel("Tiempo de ejecución (segundos)")
 plt.legend()
+plt.grid(True)
+plt.tight_layout()
 
-plt.savefig("./laboratorios/lab2-divide-y-venceras/graficas/tiempo_vs_n.png")
+ruta_graficas = Path(__file__).resolve().parent / "graficas"
+ruta_graficas.mkdir(exist_ok=True)
+
+ruta_grafica = ruta_graficas / "tiempo_vs_n.png"
+
+plt.savefig(ruta_grafica)
 plt.show()
