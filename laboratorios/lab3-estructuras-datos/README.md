@@ -168,7 +168,13 @@ Resultados obtenidos tras la ejecución del código de medición:
 ## Parte 3 - Respuestas análisis
 1. Costo teórico:
 
+En la lista enlazada, buscar una guía inexistente requiere correr todos los nodos, ya que no se puede determinar previamente dónde debería encontrarse, por lo que el tiempo de búsqueda crece proporcionalmente con la cantidad de elementos y corresponde a Θ(n). En cambio, la tabla hash con encadenamiento permite acceder directamente a una casilla mediante la función hash y buscar únicamente entre los elementos almacenados en su lista enlazadas, lo que da un costo esperado de Θ(1 + α), donde α representa el factor de carga, calculado como la cantidad de elementos dividida entre el número de casillas. Este comportamiento supone que la función hash distribuye las guías de manera aproximadamente uniforme; si todas terminaran en una misma casilla, sería necesario recorrer una lista con todos los elementos y la búsqueda pasaría a costar Θ(n), perdiendo la ventaja de la tabla hash.
+
 2. Lo medido contra lo esperado:
+
+En la primera gráfica, al pasar de n = 20000 a n = 50000, el tiempo de búsqueda en la lista enlazada aumentó de 0.00150680 segundos a 0.00425099 segundos, aproximadamente 2.82 veces, mientras que la cantidad de elementos aumentó 2.5 veces. Este comportamiento es coherente con Θ(n) ya que el tiempo crece a medida que aumenta el tamaño de la lista. En la tabla hash, el tiempo pasó de 0.00000076 segundos a 0.00000088 segundos, aproximadamente 1.16 veces, manteniéndose prácticamente constante en comparación con el crecimiento de n. Esto es consistente con el comportamiento esperado de Θ(1) cuando el factor de carga se mantiene aproximadamente constante.
+
+La segunda gráfica muestra que, a medida que el factor de carga aumentó de 0.5 a 10.005, el tiempo promedio de búsqueda pasó de 0.00000058 segundos a 0.00000150 segundos, lo que representa un aumento de aproximadamente 2.59 veces. Esto indica que un mayor número de elementos por casilla aumenta el tiempo de búsqueda, lo cual concuerda con Θ(1 + α). Sin embargo, el aumento no es directamente proporciona al factor de carga, lo cual es de esperarse debido a las variaciones en las mediciones y a la distribución de las guías entre las casillas. 
 
 3. Explicación colisiones:
 
