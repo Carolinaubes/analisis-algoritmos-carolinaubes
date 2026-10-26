@@ -16,7 +16,7 @@
 
 Para reproducir el entorno y ejecutar los experimentos en Windows, siga los siguientes pasos:
 
-1. Abra una terminal dentro de la carpeta nombrada `lab2-divide-y-venceras`.
+1. Abra una terminal dentro de la carpeta nombrada `lab2-divide-y-vencer`.
 
 2. Cree el entorno virtual:
 
@@ -52,7 +52,7 @@ python medicion.py
 
 Para reproducir el entorno y ejecutar los experimentos en macOS, siga los siguientes pasos:
 
-1. Abra una terminal dentro de la carpeta nombrada `lab2-divide-y-venceras`.
+1. Abra una terminal dentro de la carpeta nombrada `lab2-divide-y-vencer`.
 
 2. Cree el entorno virtual:
 
@@ -88,7 +88,7 @@ python3 medicion.py
 
 Para reproducir el entorno y ejecutar los experimentos en Linux, siga los siguientes pasos:
 
-1. Abra una terminal dentro de la carpeta nombrada `lab2-divide-y-venceras`.
+1. Abra una terminal dentro de la carpeta nombrada `lab2-divide-y-vencer`.
 
 2. Cree el entorno virtual:
 
