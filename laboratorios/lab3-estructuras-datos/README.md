@@ -4,9 +4,9 @@
 
 ## Propósito carpetas y archivos  
 
-* medicion.py:
+* medicion.py: Ejecuta los experimentos A y B para medir el tiempo promedio de búsquedas infructuosas en una lista enlazada y una tabla hash.
 * pruebas.py: Lógica para probar el funcionamiento de los métodos definidos en estructuras.py por medio de diferentes casos.
-* estructuras.py: 
+* estructuras.py: Lógica para trabajar con listas enlazadas y tabla hash.
 * graficas/: Carpeta que almacena las gráficas generadas en el laboratorio.
 
 ## Instrucciones para reproducir el laboratorio 
@@ -42,7 +42,7 @@ python -m pip install -r requirements.txt
 python pruebas.py
 ```
 
-6. Ejecute el archivo `medicion.py` para realizar las mediciones de tiempo y generar la gráfica:
+6. Ejecute el archivo `medicion.py` para realizar las mediciones de tiempo y generar las gráficas:
 
 ```bash
 python medicion.py
@@ -78,7 +78,7 @@ python3 -m pip install -r requirements.txt
 python3 pruebas.py
 ```
 
-6. Ejecute el archivo `medicion.py` para realizar las mediciones de tiempo y generar la gráfica:
+6. Ejecute el archivo `medicion.py` para realizar las mediciones de tiempo y generar las gráficas:
 
 ```bash
 python3 medicion.py
@@ -114,13 +114,13 @@ python3 -m pip install -r requirements.txt
 python3 pruebas.py
 ```
 
-6. Ejecute el archivo `medicion.py` para realizar las mediciones de tiempo y generar la gráfica:
+6. Ejecute el archivo `medicion.py` para realizar las mediciones de tiempo y generar las gráficas:
 
 ```bash
 python3 medicion.py
 ```
 
-La gráfica generada se almacenará en la carpeta **`graficas/`**.
+Las gráficas generadas se almacenarán en la carpeta **`graficas/`**.
 
 ## Parte 1 - Implementar y verificar las dos estructuras
 > Acceda al código de [estructuras.py](./estructuras.py) y [pruebas.py](./pruebas.py)
@@ -174,7 +174,7 @@ En la lista enlazada, buscar una guía inexistente requiere correr todos los nod
 
 En la primera gráfica, al pasar de n = 20000 a n = 50000, el tiempo de búsqueda en la lista enlazada aumentó de 0.00150680 segundos a 0.00425099 segundos, aproximadamente 2.82 veces, mientras que la cantidad de elementos aumentó 2.5 veces. Este comportamiento es coherente con Θ(n) ya que el tiempo crece a medida que aumenta el tamaño de la lista. En la tabla hash, el tiempo pasó de 0.00000076 segundos a 0.00000088 segundos, aproximadamente 1.16 veces, manteniéndose prácticamente constante en comparación con el crecimiento de n. Esto es consistente con el comportamiento esperado de Θ(1) cuando el factor de carga se mantiene aproximadamente constante.
 
-La segunda gráfica muestra que, a medida que el factor de carga aumentó de 0.5 a 10.005, el tiempo promedio de búsqueda pasó de 0.00000058 segundos a 0.00000150 segundos, lo que representa un aumento de aproximadamente 2.59 veces. Esto indica que un mayor número de elementos por casilla aumenta el tiempo de búsqueda, lo cual concuerda con Θ(1 + α). Sin embargo, el aumento no es directamente proporciona al factor de carga, lo cual es de esperarse debido a las variaciones en las mediciones y a la distribución de las guías entre las casillas. 
+La segunda gráfica muestra que, a medida que el factor de carga aumentó de 0.5 a 10.005, el tiempo promedio de búsqueda pasó de 0.00000058 segundos a 0.00000150 segundos, lo que representa un aumento de aproximadamente 2.59 veces. Esto indica que un mayor número de elementos por casilla aumenta el tiempo de búsqueda, lo cual concuerda con Θ(1 + α). Sin embargo, el aumento no es directamente proporcional al factor de carga, lo cual es de esperarse debido a las variaciones en las mediciones y a la distribución de las guías entre las casillas. 
 
 3. Explicación colisiones:
 
@@ -182,4 +182,10 @@ Una colisión sucede cuando la función hash asigna el mismo índice a dos o má
 
 4. Tabla hash o árbol de búsqueda:
 
+La tabla hash es adecuada para consultar el estado de una guía específica, pero no para recuperar de manera eficiente todas las guías dentro de un rango determinado, ya que sus posiciones no siguen el orden numérico de las claves. Para este tipo de consulta, un árbol de búsqueda binario sería más apropiado, ya que organiza las guías de manera que las más pequeñas estén a la izquierda y las más grandes a la derecha, lo que permite recorrer el rango solicitado sin necesidad de revisar todos los elementos. Sin embargo, si las 400000 guías se ordenaran e insertaran una por una en un árbol binario desequilibrado, este se convertiría prácticamente en una lista enlazada, con una altura de aproximadamente 400000 niveles y hasta 400000 comparaciones necesarias para encontrar una sola guía. En cambio, un árbol equilibrado tendría una altura aproximada de log₂ (400000) ≅ 19 niveles, por lo que encontrar una guía requeriría unas 19 comparaciones en el peor de los casos, aunque recuperar todas las guías dentro de un rango también dependería de cuántos elementos pertenezcan a ese rango. 
+
 5. Concepto para la jefa de operaciones:
+
+Se recomienda combinar una tabla hash con encadenamiento para consultas puntuales y un árbol de búsqueda equilibrado para consultas de rango, ya que la primera permite buscar rápidamente una entrada específica, mientras que el segundo mantiene las entradas ordenadas y facilita la recuperación de aquellas que se encuentran entre dos valores.
+
+Para 5000000 de guías, se estima que una búsqueda infructuosa en la lista enlazada tomaría aproximadamente 0.425 segundos, basándose en los 0.00425099 segundos medidos con 50000 entradas y suponiendo que el tiempo aumenta proporcionalmente a n, como se espera para Θ(n). En la tabla hash, si se mantiene un factor de carga cercano a 2, el tiempo estimado sería de aproximadamente 0.000001 segundos, ya que las mediciones permitieron observar que se mantenía prácticamente constante a medida que aumentaba el número de entradas. Todos estos valores son estimaciones, no garantías de desempeño en producción. 
