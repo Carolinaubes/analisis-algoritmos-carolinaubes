@@ -76,8 +76,11 @@ def probar_colecciones_aleatorias() -> None:
 
         assert lista.tamano == tabla.tamano == 50
 
-
-if __name__ == "__main__":
+def main() -> None:
+    """Ejecuta todas las pruebas."""
     probar_lista_enlazada()
     probar_tabla_hash()
     probar_colecciones_aleatorias()
+
+if __name__ == "__main__":
+    main()
