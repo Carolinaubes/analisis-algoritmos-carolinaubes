@@ -10,7 +10,7 @@ from estructuras import ListaEnlazada, TablaHash
 
 
 CANTIDAD_BUSQUEDAS = 200
-SEMILLA_GUIAS = 42
+SEMILLA_FIJA = 42
 TAMANO_B = 20_000  # Tamaño fijo para el experimento B
 
 
@@ -22,9 +22,9 @@ def generar_guias_inexistentes(
     """Genera guias de diez digitos que no estan en la coleccion.
 
     Args:
-        existentes: Guias almacenadas en las estructuras.
-        cantidad: Cuantas guias inexistentes generar.
-        semilla: Semilla del generador, para reproducir la medicion.
+        existentes: guias almacenadas en las estructuras.
+        cantidad: cuantas guias inexistentes generar.
+        semilla: semilla del generador, para reproducir la medicion.
 
     Returns:
         Una lista con `cantidad` guias que no pertenecen a `existentes`.
@@ -44,7 +44,7 @@ def es_primo(numero: int) -> bool:
     """Indica si un entero es primo.
 
     Args:
-        numero: Entero que se desea comprobar.
+        numero: entero que se desea comprobar.
 
     Returns:
         True si el numero es primo; False en caso contrario.
@@ -69,7 +69,7 @@ def primo_mas_cercano(objetivo: int) -> int:
     """Obtiene el primo mas cercano a un valor objetivo.
 
     Args:
-        objetivo: Valor alrededor del cual buscar el primo.
+        objetivo: valor alrededor del cual buscar el primo.
 
     Returns:
         El numero primo mas cercano al objetivo.
@@ -95,8 +95,8 @@ def generar_guias_existentes(cantidad: int, semilla: int) -> list[int]:
     """Genera guias unicas de diez digitos de forma reproducible.
 
     Args:
-        cantidad: Numero de guias que se deben generar.
-        semilla: Semilla fija del generador aleatorio.
+        cantidad: numero de guias que se deben generar.
+        semilla: semilla fija del generador aleatorio.
 
     Returns:
         Una lista de guias unicas de diez digitos.
@@ -113,9 +113,9 @@ def verificar_muestra(
     """Comprueba que ambas estructuras coincidan en una muestra existente.
 
     Args:
-        lista: Lista enlazada construida con las guias.
-        tabla: Tabla hash construida con las mismas guias.
-        guias: Guias existentes que se usaran para la comprobacion.
+        lista: lista enlazada construida con las guias.
+        tabla: tabla hash construida con las mismas guias.
+        guias: guias existentes que se usaran para la comprobacion.
     """
     for guia in guias[: min(20, len(guias))]:
         estado_lista = lista.buscar(guia)
@@ -131,8 +131,8 @@ def medir_busquedas(
     """Calcula el tiempo medio de busqueda para una lista de guias.
 
     Args:
-        estructura: Estructura en la que se realizaran las busquedas.
-        guias: Guias que se van a buscar.
+        estructura: estructura en la que se realizaran las busquedas.
+        guias: guias que se van a buscar.
 
     Returns:
         Tiempo medio por busqueda (en segundos).
@@ -151,8 +151,8 @@ def construir_estructuras(
     """Construye ambas estructuras con los mismos datos.
 
     Args:
-        guias: Guias que se insertaran.
-        m: Numero de casillas de la tabla hash.
+        guias: guias que se insertaran.
+        m: numero de casillas de la tabla hash.
 
     Returns:
         La lista enlazada y la tabla hash ya construidas.
@@ -179,7 +179,7 @@ def experimento_a() -> tuple[list[int], list[float], list[float]]:
     tiempos_tabla: list[float] = []
 
     for n in tamanos:
-        guias = generar_guias_existentes(n, SEMILLA_GUIAS + n)
+        guias = generar_guias_existentes(n, SEMILLA_FIJA + n)
         m = primo_mas_cercano(n // 2)
         lista, tabla = construir_estructuras(guias, m)
 
@@ -231,7 +231,7 @@ def experimento_b() -> tuple[list[float], list[float]]:
     """
     n = TAMANO_B
     factores_objetivo = [0.5, 1.0, 4.0, 10.0]
-    guias = generar_guias_existentes(n, SEMILLA_GUIAS + n)
+    guias = generar_guias_existentes(n, SEMILLA_FIJA + n)
     inexistentes = generar_guias_inexistentes(
         set(guias),
         CANTIDAD_BUSQUEDAS,
