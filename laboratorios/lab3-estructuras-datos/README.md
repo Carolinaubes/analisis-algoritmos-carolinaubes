@@ -178,6 +178,8 @@ La segunda gráfica muestra que, a medida que el factor de carga aumentó de 0.5
 
 3. Explicación colisiones:
 
+Una colisión sucede cuando la función hash asigna el mismo índice a dos o más guías diferentes; esto puede suceder incluso si la tabla tiene más casillas que guías, ya que la función hash asigna cada clave a un índice dentro de un rango limitado y no garantiza que todas las guías terminen en posiciones diferentes. Por ejemplo, con m = 7 y la función hash h(guia) = guia % 7, las guías `10`, `24` y `17` dan como resultado el índice 3, lo que provoca una colisión. El encadenamiento resuelve este problema al almacenar las tres guías en una lista enlazada dentro de la misma casilla, lo que facilita su implementación, aunque las búsquedas pueden llegar a tardar más si se acumulan demasiados elementos en la lista. Por otro lado, el direccionamiento abierto almacena todas las guías directamente en la tabla y, cuando una posición está ocupada, busca otra casilla disponible mediante un procedimiento de exploración; esto puede requerir múltiples verificaciones, lo que implica menos eficiencia cuando la tabla está muy llena. 
+
 4. Tabla hash o árbol de búsqueda:
 
 5. Concepto para la jefa de operaciones:
